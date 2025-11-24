@@ -17,7 +17,7 @@ data class WebProd(
     val precio_compra: Double,
     val stock: Int,
 
-    val categoria_id: String,
+    val categoria_id: Int?,
     val proveedor_id: Int?,
     val fecha_creacion: String,
     val activo: Int,

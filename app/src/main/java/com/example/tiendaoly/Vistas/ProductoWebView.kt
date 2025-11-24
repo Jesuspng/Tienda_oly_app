@@ -2,89 +2,99 @@ package com.example.tiendaoly.Vistas
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tiendaoly.Contratos.ContratoProducto
 import com.example.tiendaoly.Modelos.ApiService
-import com.example.tiendaoly.Modelos.Producto
 import com.example.tiendaoly.Modelos.WebProd
-import com.google.gson.internal.GsonBuildConfig
-import okhttp3.OkHttpClient
+import com.example.tiendaoly.R
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import com.example.tiendaoly.R
+import okhttp3.OkHttpClient
 
+class ProductoWebView : AppCompatActivity() {
 
-
-class ProductoWebView : AppCompatActivity(), ContratoProducto.VistaProd {
     private lateinit var rcvLista: RecyclerView
     private lateinit var service: ApiService
+    private lateinit var searchView: SearchView
+    private lateinit var adaptador: ProductoAdapterWeb
+
+    // Lista auxiliar para no perder los datos al buscar
+    private var listaOriginal: List<WebProd> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_producto_web_view)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
+        // Inicializar
         rcvLista = findViewById(R.id.rcvCafeWeb)
+        searchView = findViewById(R.id.svBusqueda)
         rcvLista.layoutManager = LinearLayoutManager(this)
 
-        //configuramos retrofit //esto iria en el modelo
+        // Configurar Retrofit
         val retrofit = Retrofit.Builder()
-            // IMPORTANTE: Asegúrate de si existe la carpeta "/api/" o no.
-            // Si tus archivos php están sueltos, borra "api/".
-            .baseUrl("https://equipo6.grupoahost.com/Api/")
+            .baseUrl("https://equipo6.grupoahost.com/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(OkHttpClient())
             .build()
 
         service = retrofit.create(ApiService::class.java)
+
+        setupBuscador()
         cargarProductosWeb()
     }
 
-    private fun cargarProductosWeb() {
-        // Ahora usamos 'getCafes()' porque así se llama en tu interfaz ApiService
-        service.getCafes().enqueue(object : retrofit2.Callback<List<WebProd>> {
+    private fun setupBuscador() {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
 
+            override fun onQueryTextChange(newText: String?): Boolean {
+                // Cada vez que escribes una letra, llamamos a filtrar
+                filtrar(newText ?: "")
+                return true
+            }
+        })
+    }
+
+    private fun filtrar(texto: String) {
+        // Filtramos la lista ORIGINAL buscando coincidencias en el nombre
+        val listaFiltrada = listaOriginal.filter { producto ->
+            producto.nombre.lowercase().contains(texto.lowercase())
+        }
+
+        // Le pasamos la nueva lista limpia al adaptador
+        if (::adaptador.isInitialized) {
+            adaptador.actualizarLista(listaFiltrada)
+        }
+    }
+
+    private fun cargarProductosWeb() {
+        service.getCafes().enqueue(object : Callback<List<WebProd>> {
             override fun onResponse(call: Call<List<WebProd>>, response: Response<List<WebProd>>) {
                 if (response.isSuccessful) {
                     val lista = response.body()
                     if (!lista.isNullOrEmpty()) {
-                        // Pasamos la lista al adaptador
-                        val adaptador = ProductoAdapterWeb(this@ProductoWebView, lista)
+                        // 1. Guardamos los datos originales
+                        listaOriginal = lista
+
+                        // 2. Llenamos el adaptador
+                        adaptador = ProductoAdapterWeb(this@ProductoWebView, listaOriginal)
                         rcvLista.adapter = adaptador
                     } else {
-                        Toast.makeText(baseContext, "No hay productos disponibles", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(baseContext, "Sin productos", Toast.LENGTH_SHORT).show()
                     }
-                } else {
-                    Toast.makeText(baseContext, "Error del servidor: ${response.code()}", Toast.LENGTH_SHORT).show()
                 }
             }
 
-            override fun onFailure(
-                call: Call<List<WebProd>?>,
-                t: Throwable
-            ) {
-                Toast.makeText(baseContext, "Error al cargar los datos ${t.message}", Toast.LENGTH_SHORT).show()
+            override fun onFailure(call: Call<List<WebProd>>, t: Throwable) {
+                Toast.makeText(baseContext, "Error: ${t.message}", Toast.LENGTH_LONG).show()
             }
-
         })
-
-
-
-    }
-
-    override fun loadData(Data: List<Producto>) {
-        TODO("Not yet implemented")
     }
 }

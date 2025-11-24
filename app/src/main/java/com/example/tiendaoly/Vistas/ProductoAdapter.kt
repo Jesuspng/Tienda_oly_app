@@ -28,6 +28,8 @@ class ProductoAdapter(private val productos: List<Producto>) : RecyclerView.Adap
         return productos.size
     }
 
+
+
     class ViewHolder(ItemView: View): RecyclerView.ViewHolder(ItemView){
         val txvNombre= ItemView.findViewById<TextView>(R.id.txvNombre)
         val txvPrecio= ItemView.findViewById<TextView>(R.id.txvPrecio)
