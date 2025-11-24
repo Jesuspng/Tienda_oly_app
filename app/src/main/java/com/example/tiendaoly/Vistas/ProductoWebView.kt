@@ -37,7 +37,7 @@ class ProductoWebView : AppCompatActivity() {
 
         // Configurar Retrofit
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://equipo6.grupoahost.com/api/")
+            .baseUrl("https://equipo6.grupoahost.com/Api/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(OkHttpClient())
             .build()
@@ -55,7 +55,7 @@ class ProductoWebView : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                // Cada vez que escribes una letra, llamamos a filtrar
+
                 filtrar(newText ?: "")
                 return true
             }
@@ -63,12 +63,20 @@ class ProductoWebView : AppCompatActivity() {
     }
 
     private fun filtrar(texto: String) {
-        // Filtramos la lista ORIGINAL buscando coincidencias en el nombre
-        val listaFiltrada = listaOriginal.filter { producto ->
-            producto.nombre.lowercase().contains(texto.lowercase())
+        // PROTECCIÓN: Si la lista original está vacía, no hacemos nada (evita errores)
+        if (listaOriginal.isEmpty()) return
+
+        val listaFiltrada = if (texto.isEmpty()) {
+            // CASO 1: Si no hay texto, mostramos TODO la lista original
+            listaOriginal
+        } else {
+            // CASO 2: Si hay texto, filtramos
+            listaOriginal.filter { producto ->
+                producto.nombre.lowercase().contains(texto.lowercase())
+            }
         }
 
-        // Le pasamos la nueva lista limpia al adaptador
+        // Actualizamos el adaptador
         if (::adaptador.isInitialized) {
             adaptador.actualizarLista(listaFiltrada)
         }
@@ -78,22 +86,28 @@ class ProductoWebView : AppCompatActivity() {
         service.getCafes().enqueue(object : Callback<List<WebProd>> {
             override fun onResponse(call: Call<List<WebProd>>, response: Response<List<WebProd>>) {
                 if (response.isSuccessful) {
-                    val lista = response.body()
-                    if (!lista.isNullOrEmpty()) {
-                        // 1. Guardamos los datos originales
-                        listaOriginal = lista
+                    val listaDelServidor = response.body()
 
-                        // 2. Llenamos el adaptador
+                    if (!listaDelServidor.isNullOrEmpty()) {
+
+                        listaOriginal = listaDelServidor
+
                         adaptador = ProductoAdapterWeb(this@ProductoWebView, listaOriginal)
                         rcvLista.adapter = adaptador
+
+                        android.util.Log.d("DEBUG_APP", "Llegaron ${listaOriginal.size} productos")
+
                     } else {
-                        Toast.makeText(baseContext, "Sin productos", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(baseContext, "El servidor devolvió 0 productos", Toast.LENGTH_SHORT).show()
                     }
+                } else {
+                    Toast.makeText(baseContext, "Error del servidor: ${response.code()}", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<List<WebProd>>, t: Throwable) {
-                Toast.makeText(baseContext, "Error: ${t.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(baseContext, "Fallo de red: ${t.message}", Toast.LENGTH_LONG).show()
+                android.util.Log.e("DEBUG_APP", "Error: ${t.message}")
             }
         })
     }

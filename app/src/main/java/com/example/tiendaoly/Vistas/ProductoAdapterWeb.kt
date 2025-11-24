@@ -51,13 +51,13 @@ class ProductoAdapterWeb(val contexto: Context, var catalogo: List<WebProd>) :
         return catalogo.size
     }
 
-    // --- FUNCIÓN NECESARIA PARA EL BUSCADOR ---
+
     fun actualizarLista(nuevaLista: List<WebProd>) {
         catalogo = nuevaLista
         notifyDataSetChanged() // Refresca el RecyclerView con los nuevos datos
     }
 
-    // --- FUNCIÓN PARA ABRIR EL DETALLE ---
+
     private fun verDetalle(producto: WebProd) {
         val intent = Intent(contexto, DetalleWebActivity::class.java).apply {
             // Pasamos los datos con claves en minúsculas para evitar errores

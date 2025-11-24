@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="20dp"
+
         android:orientation="vertical">
 
         <LinearLayout
@@ -18,7 +19,9 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
+            android:background="#f57a3a"
             android:layout_marginBottom="10dp">
+
 
             <ImageView
                 android:id="@+id/logo"
@@ -39,7 +42,7 @@
             android:id="@+id/svBusqueda"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_launcher_background"
+            android:background="#f57a3a"
             app:iconifiedByDefault="false"
             app:queryHint="Buscar producto por nombre..."
             android:layout_marginBottom="10dp"/>
