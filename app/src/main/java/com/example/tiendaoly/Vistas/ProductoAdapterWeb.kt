@@ -12,12 +12,12 @@ import com.bumptech.glide.Glide
 import com.example.tiendaoly.Modelos.WebProd
 import com.example.tiendaoly.R
 
-// NOTA: 'catalogo' ahora es 'var' para permitir que el buscador modifique la lista
+
 class ProductoAdapterWeb(val contexto: Context, var catalogo: List<WebProd>) :
     RecyclerView.Adapter<ProductoAdapterWeb.ViewHolderWeb>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderWeb {
-        // Inflamos el diseño de la fila
+
         val view = LayoutInflater.from(contexto).inflate(R.layout.item_prod_web, parent, false)
         return ViewHolderWeb(view)
     }
@@ -25,16 +25,14 @@ class ProductoAdapterWeb(val contexto: Context, var catalogo: List<WebProd>) :
     override fun onBindViewHolder(holder: ViewHolderWeb, position: Int) {
         val produc = catalogo[position]
 
-        // 1. Asignar textos
-        holder.nombreweb.text = produc.nombre
-        holder.puntuacion.text = "$ ${produc.precio_venta}" // Formato de precio con signo $
 
-        // 2. Construcción Segura de la URL de la imagen
-        // Usamos ?.trim() ?: "" para evitar que la app se cierre si la imagen es null
+        holder.nombreweb.text = produc.nombre
+        holder.puntuacion.text = "$ ${produc.precio_venta}"
+
         val nombreImagen = produc.imagenText?.trim() ?: ""
         val urlImagen = "https://equipo6.grupoahost.com/img/" + nombreImagen
 
-        // 3. Cargar imagen con Glide
+
         Glide.with(contexto)
             .load(urlImagen)
             .placeholder(R.drawable.ic_launcher_background) // Imagen de espera

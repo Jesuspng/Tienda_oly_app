@@ -20,23 +20,38 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:background="#f57a3a"
+            android:padding="10dp"
             android:layout_marginBottom="10dp">
 
-
+            <!-- LOGO -->
             <ImageView
                 android:id="@+id/logo"
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:src="@drawable/logo"/>
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/logo"
+                android:layout_marginRight="10dp" />
 
+            <!-- TÍTULO -->
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/tituloCatalogo"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="Catálogo"
                 android:textSize="25sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#FFFFFF" />
+
+            <!-- ICONO USUARIO -->
+            <ImageView
+                android:id="@+id/usuario"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@mipmap/us" />
+
         </LinearLayout>
+
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/svBusqueda"
@@ -52,6 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="5dp" />
+
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

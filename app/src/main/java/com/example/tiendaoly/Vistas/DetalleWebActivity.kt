@@ -41,8 +41,7 @@ class DetalleWebActivity : AppCompatActivity() {
         val categoriaDetalle = intent.getIntExtra("categoria", 0)
 
 
-        // Cargar Imagen
-        // Usamos trim() por seguridad para quitar espacios vacíos
+
         if (imagenDetalle.isNotEmpty()) {
             Glide.with(this)
                 .load("https://equipo6.grupoahost.com/img/" + imagenDetalle.trim())
@@ -50,7 +49,7 @@ class DetalleWebActivity : AppCompatActivity() {
                 .into(imagen)
         }
 
-        // Asignar textos
+
         nombre.text = nombreDetalle
         descripcion.text = descripcionDetalle
         precio.text = "$ $precioDetalle"

@@ -15,7 +15,28 @@
         android:roundIcon="@mipmap/lico"
         android:supportsRtl="true"
         android:theme="@style/Theme.TiendaOly">
-
+        <activity
+            android:name=".Vistas.Usuarios_Adapter"
+            android:exported="false" />
+        <activity
+            android:name=".Vistas.ControlAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".Vistas.administrador"
+            android:exported="false" />
+        <activity
+            android:name=".Vistas.Administrador"
+            android:exported="false"
+            android:theme="@style/Theme.TiendaOly" />
+        <activity
+            android:name=".Vistas.EditarUsuario"
+            android:exported="false" />
+        <activity
+            android:name=".Vistas.Perfil"
+            android:exported="false" />
+        <activity
+            android:name=".Vistas.login"
+            android:exported="false" />
         <activity
             android:name=".Vistas.Productovista"
             android:exported="false" />

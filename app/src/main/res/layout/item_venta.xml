@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="#FFFFFF"
+    android:elevation="3dp"
+    android:layout_margin="8dp">
+
+    <!-- ID -->
+    <TextView
+        android:id="@+id/tvidVenta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID: 1"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <!-- Fecha -->
+    <TextView
+        android:id="@+id/tvfechaVenta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha: 2025-11-23"
+        android:textSize="16sp"/>
+
+    <!-- Usuario -->
+    <TextView
+        android:id="@+id/tvusuarioVenta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Usuario: admin"
+        android:textSize="16sp"/>
+
+    <!-- Total -->
+    <TextView
+        android:id="@+id/tvtotalVenta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total: $150.00"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:textColor="#f57a3a"
+        android:paddingTop="5dp"/>
+
+</LinearLayout>
