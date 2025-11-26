@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TiendaOly">
         <activity
+            android:name=".Vistas.registrarUsuario"
+            android:exported="false" />
+        <activity
             android:name=".Vistas.Usuarios_Adapter"
             android:exported="false" />
         <activity
@@ -25,18 +28,14 @@
             android:name=".Vistas.administrador"
             android:exported="false" />
         <activity
-            android:name=".Vistas.Administrador"
-            android:exported="false"
-            android:theme="@style/Theme.TiendaOly" />
-        <activity
             android:name=".Vistas.EditarUsuario"
             android:exported="false" />
         <activity
             android:name=".Vistas.Perfil"
             android:exported="false" />
         <activity
-            android:name=".Vistas.login"
-            android:exported="false" />
+            android:name=".Vistas.ProductoWebView"
+            android:exported="true" />
         <activity
             android:name=".Vistas.Productovista"
             android:exported="false" />
@@ -44,7 +43,7 @@
             android:name=".Vistas.DetalleWebActivity"
             android:exported="false" />
         <activity
-            android:name=".Vistas.ProductoWebView"
+            android:name=".Vistas.login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

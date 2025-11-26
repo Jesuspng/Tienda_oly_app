@@ -48,40 +48,40 @@
             android:layout_marginTop="25dp"
             android:layout_marginHorizontal="25dp"/>
 
-        <TextView
+
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Contraseña"
-            android:textSize="20sp"
-            android:gravity="left"
-            android:padding="10dp"
-            />
+            app:endIconMode="password_toggle"
 
-        <EditText
-            android:id="@+id/TxtPass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Contrseña"
-            android:textAlignment="center"
-            android:layout_marginTop="25dp"
-            android:layout_marginHorizontal="25dp"/>
+            android:layout_marginTop="25dp">
 
-        <Button
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/TxtPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:textAlignment="center"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnIniciar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:background="#f57a3a"
-            android:text="Iniciar sesion"
-            android:layout_margin="13dp"/>
+            android:text="Iniciar sesión"
+            android:layout_margin="13dp"
+            app:backgroundTint="#f57a3a" />
 
         <Button
-            android:id="@+id/BtnRegistrar"
+            android:id="@+id/crearcuenta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:background="#f57a3a"
-            android:text="Registrar"
+            app:backgroundTint="#f57a3a"
+            android:text="Crear cuenta"
             android:layout_margin="13dp"/>
 
     </LinearLayout>

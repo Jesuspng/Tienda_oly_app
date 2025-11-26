@@ -14,18 +14,18 @@ interface ApiService {
     fun getCafes(): Call<List<WebProd>>
 
     @FormUrlEncoded
-    @POST("registroProd.php")
-    fun postProducto(
+    @POST("registrarUsuario.php")
+    fun registrarUsuario(
+        @Field("alias") alias: String,
+        @Field("password") pass: String,
         @Field("nombre") nombre: String,
-        @Field("codigo") codigo: String,
-        @Field("descripcion") descripcion: String,
-        @Field("precio_venta") precioVenta: Float,
-        @Field("precio_compra") precioCompra: Float,
-        @Field("stock") stock: Int,
-        @Field("categoria_id") categoriaId: Int,
-        @Field("proveedor_id") proveedorId: Int,
-        @Field("ImagenText") imagenText: String
-    ): Call<List<respuestaRegistro>>
+        @Field("apellido") apellido: String,
+        @Field("email") email: String,
+        @Field("telefono") telefono: String,
+        @Field("direccion") direccion: String,
+        @Field("fecha_nacimiento") fechaNacimiento: String
+    ):Call<respuestaLogin>
+
 
 
     @FormUrlEncoded

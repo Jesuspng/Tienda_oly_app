@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
-    tools:context=".Vistas.EditarUsuario">
+    tools:context=".Vistas.registrarUsuario">
 
     <!-- TÍTULO FIJO ARRIBA -->
     <TextView
         android:id="@+id/txtTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Editar Datos"
+        android:text="Crear cuenta"
         android:textSize="28sp"
         android:textStyle="bold"
         android:textColor="#f57a3a"
@@ -112,23 +110,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Fecha de nacimiento"
-                android:inputType="date"
+                android:focusable="false"
+                android:clickable="true"
                 android:padding="10dp"
                 android:textSize="18sp"
                 android:background="@android:drawable/edit_text"
                 android:layout_marginTop="15dp"/>
 
             <!-- CONTRASEÑA -->
-            <EditText
-                android:id="@+id/edtContrasena"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Contraseña"
-                android:inputType="textPassword"
-                android:padding="10dp"
-                android:textSize="18sp"
-                android:background="@android:drawable/edit_text"
-                android:layout_marginTop="15dp"/>
+                app:endIconMode="password_toggle"
+
+                android:layout_marginTop="25dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/TxtPass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Contraseña"
+                    android:inputType="textPassword"
+                    android:textAlignment="center"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <!-- BOTONES -->
             <LinearLayout
@@ -140,23 +144,14 @@
                 android:layout_marginTop="30dp">
 
                 <Button
-                    android:id="@+id/btnCancelar"
+                    android:id="@+id/btncrearcuenta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cancelar"
+                    android:text="Crear cuenta"
                     app:backgroundTint="#f57a3a"
                     android:textColor="#FFFFFF"
                     android:layout_marginBottom="12dp"/>
-
-                <Button
-                    android:id="@+id/btnBorrarCuenta"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Borrar cuenta"
-
-                    app:backgroundTint="#f57a3a"
-                    android:textColor="#FFFFFF"
-                    android:layout_marginBottom="12dp"/>
+                
 
                 <Button
                     android:id="@+id/btnVolver"
