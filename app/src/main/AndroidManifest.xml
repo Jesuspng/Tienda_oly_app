@@ -19,7 +19,7 @@
             android:name=".Vistas.registrarUsuario"
             android:exported="false" />
         <activity
-            android:name=".Vistas.Usuarios_Adapter"
+            android:name=".Vistas.usuarios_Adapter"
             android:exported="false" />
         <activity
             android:name=".Vistas.ControlAdmin"
@@ -36,9 +36,6 @@
         <activity
             android:name=".Vistas.ProductoWebView"
             android:exported="true" />
-        <activity
-            android:name=".Vistas.Productovista"
-            android:exported="false" />
         <activity
             android:name=".Vistas.DetalleWebActivity"
             android:exported="false" />

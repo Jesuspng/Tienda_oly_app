@@ -26,20 +26,57 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@drawable/logo"
-            android:layout_marginRight="10dp" />
+            android:layout_marginEnd="10dp" />
 
         <TextView
             android:id="@+id/tituloCatalogo"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:text="Ventas y Gastos"
             android:textSize="25sp"
             android:textColor="#FFFFFF"
             android:textStyle="bold" />
     </LinearLayout>
 
+    <!-- BARRA DE REPORTE -->
+    <LinearLayout
+        android:id="@+id/barraReporte"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="#1f2937"
+        android:padding="10dp"
+        app:layout_constraintTop_toBottomOf="@id/barraSuperior"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/txtTotalVentas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cargando..."
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtTotalRetiros"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cargando..."
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtSaldoFinal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cargando..."
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <!-- TÍTULO VENTAS -->
     <TextView
@@ -49,12 +86,10 @@
         android:text="Ventas"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
         android:padding="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/barraSuperior"
+        app:layout_constraintTop_toBottomOf="@id/barraReporte"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
 
     <!-- LISTA DE VENTAS -->
     <androidx.recyclerview.widget.RecyclerView
@@ -62,10 +97,9 @@
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginHorizontal="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/tituloVentas"
+        app:layout_constraintTop_toBottomOf="@id/tituloVentas"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
 
     <!-- TÍTULO GASTOS -->
     <TextView
@@ -75,21 +109,32 @@
         android:text="Gastos"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
         android:padding="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/rcvVentas"
+        app:layout_constraintTop_toBottomOf="@id/rcvVentas"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
 
     <!-- LISTA DE GASTOS -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvGastos"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/tituloGastos"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/tituloGastos"
+        app:layout_constraintBottom_toTopOf="@id/btnVolverAdmin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- BOTÓN VOLVER -->
+    <Button
+        android:id="@+id/btnVolverAdmin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Volver"
+        android:textColor="#FFFFFF"
+        android:padding="12dp"
+        app:backgroundTint="#f57a3a"
+        android:layout_margin="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Registro de gastos"
-            android:background="#f57a3a"
+            android:backgroundTint="#f57a3a"
             android:textColor="#FFFFFF"
             android:padding="12dp"
             android:layout_marginBottom="15dp"/>
@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Usuarios"
-            android:background="#f57a3a"
+            android:backgroundTint="#f57a3a"
             android:textColor="#FFFFFF"
             android:padding="12dp"
             android:layout_marginBottom="15dp"/>
@@ -62,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Volver"
-            android:background="#f57a3a"
+            android:backgroundTint="#f57a3a"
             android:textColor="#FFFFFF"
             android:padding="12dp" />
 

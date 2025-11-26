@@ -24,10 +24,13 @@ interface ApiService {
         @Field("fecha_nacimiento") fechaNacimiento: String,
     ): Call<respuestaLogin>
 
-      @FormUrlEncoded
+    @FormUrlEncoded
     @POST("login.php")
     fun login(
         @Field("alias") alias: String,
         @Field("contrasena") contrasena: String
     ): Call<respuestaLogin>
+
+    @GET("resumenDia.php")
+    fun obtenerResumenDia(): Call<ResumenDiaResponse>
 }

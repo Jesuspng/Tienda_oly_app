@@ -29,15 +29,12 @@ class registrarUsuario : AppCompatActivity() {
 
     private lateinit var btncrearcuenta: Button
     private lateinit var btnVolver: Button
-
-    // El calendario
     val calendario = Calendar.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registrar_usuario)
 
-        // Inicializar Retrofit
         val retrofit = Retrofit.Builder()
             .baseUrl("https://equipo6.grupoahost.com/Api/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -45,7 +42,7 @@ class registrarUsuario : AppCompatActivity() {
 
         apiService = retrofit.create(ApiService::class.java)
 
-        // Inputs
+
         edtAlias = findViewById(R.id.edtAlias)
         edtNombre = findViewById(R.id.edtNombre)
         edtApellido = findViewById(R.id.edtApellido)
@@ -58,28 +55,25 @@ class registrarUsuario : AppCompatActivity() {
         btncrearcuenta = findViewById(R.id.btncrearcuenta)
         btnVolver = findViewById(R.id.btnVolver)
 
-        // --- CORRECCIÓN: Lógica del Calendario movida al onCreate ---
+
         edtFechaNac.setOnClickListener {
             val year = calendario.get(Calendar.YEAR)
             val month = calendario.get(Calendar.MONTH)
             val day = calendario.get(Calendar.DAY_OF_MONTH)
 
             val datePicker = DatePickerDialog(this, { _, y, m, d ->
-                // Formato: AAAA-MM-DD
+                // AAAA-MM-DD
                 val fecha = "%04d-%02d-%02d".format(y, m + 1, d)
                 edtFechaNac.setText(fecha)
             }, year, month, day)
 
             datePicker.show()
         }
-        // ------------------------------------------------------------
 
-        // Botón Registrar
         btncrearcuenta.setOnClickListener {
             registrar()
         }
 
-        // Botón Volver
         btnVolver.setOnClickListener {
             finish()
         }
@@ -125,7 +119,6 @@ class registrarUsuario : AppCompatActivity() {
                             Toast.LENGTH_LONG
                         ).show()
 
-                        // Volver login
                         startActivity(Intent(this@registrarUsuario, login::class.java))
                         finish()
                     } else {
