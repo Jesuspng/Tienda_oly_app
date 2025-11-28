@@ -1,10 +1,12 @@
 package com.example.tiendaoly.Modelos
 
+import com.google.gson.annotations.SerializedName
+
 data class respuestaLogin(
     val success: Boolean,
     val message: String,
-    val usuario_id: Int ? = null,
-    val alias: String ? = null,
-    val rol: String ? = null,
-    val id: String
+    val alias: String,
+    val rol: String,
+
+    @SerializedName("usuario_id") val id: String
 )

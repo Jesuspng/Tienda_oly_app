@@ -88,8 +88,10 @@ class login : AppCompatActivity() {
                     editor.putString("USER_ALIAS", resp.alias)
                     editor.apply()
 
+                    android.util.Log.e("LOGIN_DEBUG", "Sesión guardada. Cambiando de pantalla...")
 
                     navegarInicio(resp.alias, resp.rol)
+
 
                 } else {
                     Toast.makeText(

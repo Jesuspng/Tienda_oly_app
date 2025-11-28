@@ -140,20 +140,10 @@
                 android:layout_marginTop="30dp">
 
                 <Button
-                    android:id="@+id/btnCancelar"
+                    android:id="@+id/btnActualizar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cancelar"
-                    app:backgroundTint="#f57a3a"
-                    android:textColor="#FFFFFF"
-                    android:layout_marginBottom="12dp"/>
-
-                <Button
-                    android:id="@+id/btnBorrarCuenta"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Borrar cuenta"
-
+                    android:text="Actualizar datos"
                     app:backgroundTint="#f57a3a"
                     android:textColor="#FFFFFF"
                     android:layout_marginBottom="12dp"/>

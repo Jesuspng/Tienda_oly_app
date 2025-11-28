@@ -1,10 +1,12 @@
 package com.example.tiendaoly.Modelos
 
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface ApiService {
 
@@ -36,4 +38,10 @@ interface ApiService {
 
     @GET("obtener_usuarios.php")
     fun obtenerUsuarios(): Call<UsuarioResponse>
+
+    @GET("obtener_perfil.php")
+    fun obtenerPerfil(@Query("id") id: String): Call<PerfilResponse>
+
+    @POST("actualizar_perfil.php")
+    fun actualizarPerfil(@Body request: PerfilUpdateRequest): Call<GenericResponse>
 }
