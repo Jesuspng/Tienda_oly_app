@@ -7,7 +7,6 @@ import com.example.tiendaoly.Modelos.ProductoModelo
 
 class productoPresentador(val vista: ContratoProducto.VistaProd): ContratoProducto.presentadorProd {
 
-
     val modelo= ProductoModelo()
     override fun loadData() {
         val lista=modelo.loadProducto()

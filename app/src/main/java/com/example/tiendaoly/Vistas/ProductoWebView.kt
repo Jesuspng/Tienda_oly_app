@@ -1,6 +1,8 @@
 package com.example.tiendaoly.Vistas
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -23,19 +25,19 @@ class ProductoWebView : AppCompatActivity() {
     private lateinit var searchView: SearchView
     private lateinit var adaptador: ProductoAdapterWeb
 
-    // Lista auxiliar para no perder los datos al buscar
+    private lateinit var usuario: ImageView
     private var listaOriginal: List<WebProd> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_producto_web_view)
 
-        // Inicializar
+
         rcvLista = findViewById(R.id.rcvCafeWeb)
         searchView = findViewById(R.id.svBusqueda)
         rcvLista.layoutManager = LinearLayoutManager(this)
+        usuario= findViewById(R.id.usuario)
 
-        // Configurar Retrofit
         val retrofit = Retrofit.Builder()
             .baseUrl("https://equipo6.grupoahost.com/Api/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -46,6 +48,12 @@ class ProductoWebView : AppCompatActivity() {
 
         setupBuscador()
         cargarProductosWeb()
+
+        usuario.setOnClickListener {
+
+            val intent = Intent(this, Perfil::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setupBuscador() {
@@ -62,25 +70,28 @@ class ProductoWebView : AppCompatActivity() {
         })
     }
 
+
+
     private fun filtrar(texto: String) {
-        // PROTECCIÓN: Si la lista original está vacía, no hacemos nada (evita errores)
+
         if (listaOriginal.isEmpty()) return
 
         val listaFiltrada = if (texto.isEmpty()) {
-            // CASO 1: Si no hay texto, mostramos TODO la lista original
+
             listaOriginal
         } else {
-            // CASO 2: Si hay texto, filtramos
+
             listaOriginal.filter { producto ->
                 producto.nombre.lowercase().contains(texto.lowercase())
             }
         }
 
-        // Actualizamos el adaptador
+
         if (::adaptador.isInitialized) {
             adaptador.actualizarLista(listaFiltrada)
         }
     }
+
 
     private fun cargarProductosWeb() {
         service.getCafes().enqueue(object : Callback<List<WebProd>> {

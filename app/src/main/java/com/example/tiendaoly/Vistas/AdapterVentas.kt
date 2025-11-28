@@ -7,32 +7,37 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tiendaoly.Modelos.VentaItem
 import com.example.tiendaoly.R
+import java.util.Locale
 
-class AdapterVentas(private var lista: List<VentaItem>) : RecyclerView.Adapter<AdapterVentas.ViewHolder>() {
+class AdapterVentas(private val lista: List<VentaItem>) : RecyclerView.Adapter<AdapterVentas.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val txtId: TextView = view.findViewById(R.id.tvidVenta)
-        val txtUsuario: TextView = view.findViewById(R.id.tvusuarioVenta)
-        val txtTotal: TextView = view.findViewById(R.id.tvtotalVenta)
+        val tvId: TextView = view.findViewById(R.id.tvidVenta)
+        val tvFecha: TextView = view.findViewById(R.id.tvfechaVenta)
+        val tvUsuario: TextView = view.findViewById(R.id.tvusuarioVenta)
+        val tvTotal: TextView = view.findViewById(R.id.tvtotalVenta)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_venta, parent, false)
+
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_venta, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = lista[position]
-        holder.txtId.text = "Venta #${item.id}"
-        holder.txtUsuario.text = "Usuario ID: ${item.usuarioId} | ${item.fecha}"
-        holder.txtTotal.text = "$${item.total}"
+
+        holder.tvId.text = "ID: ${item.id}"
+
+        holder.tvFecha.text = "Fecha: ${item.fecha}"
+
+        holder.tvUsuario.text = "Atendió: ${item.cajero}"
+        val totalFormateado = String.format(Locale.US, "%.2f", item.total)
+        holder.tvTotal.text = "Total: $$totalFormateado"
     }
 
-    override fun getItemCount() = lista.size
-
-    // Función para actualizar la lista desde la Activity
-    fun actualizarLista(nuevaLista: List<VentaItem>) {
-        lista = nuevaLista
-        notifyDataSetChanged()
+    override fun getItemCount(): Int {
+        return lista.size
     }
 }

@@ -35,11 +35,11 @@ class ProductoAdapterWeb(val contexto: Context, var catalogo: List<WebProd>) :
 
         Glide.with(contexto)
             .load(urlImagen)
-            .placeholder(R.drawable.ic_launcher_background) // Imagen de espera
-            .error(R.drawable.ic_launcher_foreground)       // Imagen si falla o no existe
+            .placeholder(R.drawable.ic_launcher_background)
+            .error(R.drawable.ic_launcher_foreground)
             .into(holder.imagen)
 
-        // 4. Click en la imagen para ver detalles
+
         holder.imagen.setOnClickListener {
             verDetalle(produc)
         }
@@ -52,28 +52,27 @@ class ProductoAdapterWeb(val contexto: Context, var catalogo: List<WebProd>) :
 
     fun actualizarLista(nuevaLista: List<WebProd>) {
         catalogo = nuevaLista
-        notifyDataSetChanged() // Refresca el RecyclerView con los nuevos datos
+        notifyDataSetChanged()
     }
 
 
     private fun verDetalle(producto: WebProd) {
         val intent = Intent(contexto, DetalleWebActivity::class.java).apply {
-            // Pasamos los datos con claves en minúsculas para evitar errores
+
             putExtra("nombre", producto.nombre)
             putExtra("descripcion", producto.descripcion)
             putExtra("imagen", producto.imagenText)
             putExtra("codigo", producto.codigo)
 
-            // IMPORTANTE: Pasamos los números como números (no como String)
-            putExtra("stock", producto.stock)             // Int
-            putExtra("categoria", producto.categoria_id)  // Int
-            putExtra("precio", producto.precio_venta)     // Double
+
+            putExtra("stock", producto.stock)
+            putExtra("categoria", producto.categoria_id)
+            putExtra("precio", producto.precio_venta)
         }
         contexto.startActivity(intent)
     }
 
-    // --- CLASE VIEWHOLDER ---
-    // Vincula las variables con los IDs del archivo item_prod_web.xml
+
     class ViewHolderWeb(control: View) : RecyclerView.ViewHolder(control) {
         val nombreweb: TextView = control.findViewById(R.id.txvNombreweb)
         val puntuacion: TextView = control.findViewById(R.id.txvPuntuacionweb)

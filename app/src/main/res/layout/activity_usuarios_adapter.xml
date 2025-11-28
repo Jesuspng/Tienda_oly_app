@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Vistas.usuarios_Adapter">
+    tools:context=".Vistas.ControlUsuarios">
 
     <!-- Título -->
     <TextView
@@ -23,7 +23,7 @@
 
     <!-- Recycler View -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerUsuarios"
+        android:id="@+id/rcvUsuarios"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:padding="10dp"

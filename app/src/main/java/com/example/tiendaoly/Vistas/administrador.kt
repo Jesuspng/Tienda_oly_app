@@ -35,7 +35,7 @@ class administrador : AppCompatActivity() {
 
         btnUsuarios.setOnClickListener{
 
-            val intent = Intent(this, usuarios_Adapter::class.java)
+            val intent = Intent(this, ControlUsuarios::class.java)
             startActivity(intent)
 
         }

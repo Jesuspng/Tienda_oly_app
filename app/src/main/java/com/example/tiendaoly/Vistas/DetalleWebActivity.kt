@@ -19,6 +19,7 @@ class DetalleWebActivity : AppCompatActivity() {
     private lateinit var categoria: TextView
     private lateinit var imagen: ImageView
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalle_web)
@@ -30,6 +31,7 @@ class DetalleWebActivity : AppCompatActivity() {
         stock = findViewById(R.id.txvStockDetalle)
         categoria = findViewById(R.id.txvCategoriaDetalle)
         imagen = findViewById(R.id.imgDetalle)
+
         BtnVolver = findViewById(R.id.BtnVolver)
 
 
@@ -47,7 +49,7 @@ class DetalleWebActivity : AppCompatActivity() {
         if (imagenDetalle.isNotEmpty()) {
             Glide.with(this)
                 .load("https://equipo6.grupoahost.com/img/" + imagenDetalle.trim())
-                .placeholder(R.drawable.logo) // Pon tu imagen de carga aquí
+                .placeholder(R.drawable.logo)
                 .into(imagen)
         }
 
@@ -60,7 +62,7 @@ class DetalleWebActivity : AppCompatActivity() {
 
         BtnVolver.setOnClickListener{
 
-            val intent = Intent(this, login::class.java)
+            val intent = Intent(this, ProductoWebView::class.java)
             startActivity(intent)
 
         }

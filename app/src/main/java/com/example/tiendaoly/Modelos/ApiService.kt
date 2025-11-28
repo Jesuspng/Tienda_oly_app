@@ -33,4 +33,7 @@ interface ApiService {
 
     @GET("resumenDia.php")
     fun obtenerResumenDia(): Call<ResumenDiaResponse>
+
+    @GET("obtener_usuarios.php")
+    fun obtenerUsuarios(): Call<UsuarioResponse>
 }

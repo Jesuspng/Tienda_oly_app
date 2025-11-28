@@ -34,13 +34,12 @@ class login : AppCompatActivity() {
             insets
         }
 
-        // Inicializamos vistas
+
         edtAlias = findViewById(R.id.Alias)
         edtPassword = findViewById(R.id.TxtPass)
         loginButton = findViewById(R.id.btnIniciar)
         BtnRegistrarUsuario = findViewById(R.id.crearcuenta)
 
-        // Retrofit
         val retrofit = Retrofit.Builder()
             .baseUrl("https://equipo6.grupoahost.com/Api/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -56,7 +55,7 @@ class login : AppCompatActivity() {
 
         }
 
-        // Acción del botón
+
         loginButton.setOnClickListener {
             val alias = edtAlias.text.toString().trim()
             val password = edtPassword.text.toString().trim()
@@ -81,6 +80,13 @@ class login : AppCompatActivity() {
                 val resp = response.body()
 
                 if (response.isSuccessful && resp != null && resp.success == true) {
+
+                    val sharedPref = getSharedPreferences("SesionTienda", MODE_PRIVATE)
+                    val editor = sharedPref.edit()
+                    editor.putString("USER_ID", resp.id)
+                    editor.putString("USER_ROL", resp.rol)
+                    editor.putString("USER_ALIAS", resp.alias)
+                    editor.apply()
 
 
                     navegarInicio(resp.alias, resp.rol)
@@ -108,7 +114,7 @@ class login : AppCompatActivity() {
 
             "Cliente" -> Intent(this, ProductoWebView::class.java)
 
-            "Cajero" -> Intent(this, administrador::class.java)
+            "Cajero" -> Intent(this, ProductoWebView::class.java)
 
             else -> {
                 Toast.makeText(this, "Rol desconocido: $rol", Toast.LENGTH_SHORT).show()

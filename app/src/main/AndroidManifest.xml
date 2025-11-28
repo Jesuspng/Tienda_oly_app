@@ -19,7 +19,7 @@
             android:name=".Vistas.registrarUsuario"
             android:exported="false" />
         <activity
-            android:name=".Vistas.usuarios_Adapter"
+            android:name=".Vistas.ControlUsuarios"
             android:exported="false" />
         <activity
             android:name=".Vistas.ControlAdmin"

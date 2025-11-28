@@ -35,7 +35,7 @@
 
     <!-- Monto -->
     <TextView
-        android:id="@+id/tvMontoRetiro"
+        android:id="@+id/txtMontoGasto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Monto: $500.00"
@@ -46,7 +46,7 @@
 
     <!-- Descripción -->
     <TextView
-        android:id="@+id/tvDescripcionRetiro"
+        android:id="@+id/txtDescGasto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Descripción: Compra de insumos"
